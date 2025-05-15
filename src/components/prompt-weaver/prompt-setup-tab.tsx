@@ -1,7 +1,7 @@
 "use client";
 
 
-import { useState, type UseFormReturn } from 'react-hook-form';
+import { useState } from 'react';
 import type { FC } from 'react';
 import {
   FormControl,
@@ -20,13 +20,6 @@ interface PromptSetupTabProps {
 }
 
 const PromptSetupTab: FC<PromptSetupTabProps> = ({ form }) => {
-  const [prompt1Text, setPrompt1Text] = useState(`Using the client information of:
-{field1}
-{field2}
-{field3}
-
-Writing as an attorney with experience in immigration and asylum cases, write a 3 paragraph brief that explains why the client has experienced hardship and is eligible for asylum. `);
-
   return (
     <Card className="shadow-lg">
       <CardHeader>
@@ -42,8 +35,7 @@ Writing as an attorney with experience in immigration and asylum cases, write a 
               <FormLabel className="text-base font-medium text-foreground">Prompt 1 Setup</FormLabel>
               <FormControl>
                 <Textarea                  className="min-h-[150px] bg-background focus-visible:ring-accent"
-                  value={prompt1Text}
-                  {...field}
+                  {...field} // Let react-hook-form manage value and onChange
                 />
               </FormControl>
               <FormMessage />

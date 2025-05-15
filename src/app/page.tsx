@@ -35,8 +35,6 @@ const HomePage: FC = () => {
 {field3}
 
 Writing as an attorney with experience in immigration and asylum cases, write a 3 paragraph brief that explains why the client has experienced hardship and is eligible for asylum. `,
-
-      prompt1Setup: '',
       prompt2Setup: '',
     },
     mode: "onBlur" // Validate on blur
