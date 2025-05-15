@@ -46,11 +46,6 @@ const prompt = ai.definePrompt({
     {{{prompt2Setup}}}
   {{/ifEquals}}
   `,
-  templateHelpers: {
-    ifEquals: (arg1: any, arg2: any, options: any) => {
-      return arg1 == arg2 ? options.fn(this) : options.inverse(this);
-    },
-  },
   config: {
     model: 'googleai/gemini-2.0-flash'
   }
