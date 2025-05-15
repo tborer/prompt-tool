@@ -10,9 +10,7 @@ export const promptWeaverFormSchema = z.object({
   field4: z.string().optional(),
   field5: z.string().optional(),
   field6: z.string().optional(),
-  prompt1Setup: z.string(),
   prompt2Setup: z.string(),
-  llmApiKey: z.string().min(1, "LLM API Key cannot be empty."),
 }).superRefine((data, ctx) => {
   if (data.promptType === 'Prompt 1') {
     if (!data.field1?.trim()) {

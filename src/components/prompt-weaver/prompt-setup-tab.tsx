@@ -28,20 +28,6 @@ const PromptSetupTab: FC<PromptSetupTabProps> = ({ form }) => {
       <CardContent className="space-y-6">
         <FormField
           control={form.control}
-          name="llmApiKey"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-base font-medium text-foreground">LLM API Token/Key</FormLabel>
-              <FormControl>
-                <Input type="password" placeholder="Enter your LLM API Key" {...field} className="bg-background focus-visible:ring-accent" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
           name="prompt1Setup"
           render={({ field }) => (
             <FormItem>

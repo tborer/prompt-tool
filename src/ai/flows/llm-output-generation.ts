@@ -20,7 +20,6 @@ const GenerateLlmOutputInputSchema = z.object({
   field4: z.string().optional().describe('Field 4 input.'),
   field5: z.string().optional().describe('Field 5 input.'),
   field6: z.string().optional().describe('Field 6 input.'),
-  prompt1Setup: z.string().describe('Prompt 1 setup text.'),
   prompt2Setup: z.string().describe('Prompt 2 setup text.'),
   llmApiKey: z.string().describe('The LLM API key.'),
 });
@@ -64,10 +63,6 @@ const generateLlmOutputFlow = ai.defineFlow(
     outputSchema: GenerateLlmOutputOutputSchema,
   },
   async input => {
-    if (!input.llmApiKey) {
-      throw new Error('LLM API Key is required.');
-    }
-
     if (input.promptType === 'Prompt 1' && !input.prompt1Setup) {
       throw new Error('Prompt 1 Setup is required.');
     }
