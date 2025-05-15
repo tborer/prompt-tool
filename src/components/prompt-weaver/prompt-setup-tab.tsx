@@ -23,7 +23,7 @@ const PromptSetupTab: FC<PromptSetupTabProps> = ({ form }) => {
     <Card className="shadow-lg">
       <CardHeader>
         <CardTitle className="text-xl font-semibold text-primary">Configure Prompts & API</CardTitle>
-        <CardDescription>Set up your LLM API Key and the base text for your prompts. Use placeholders like {{'{field1}'}} for dynamic input.</CardDescription>
+        <CardDescription>Set up your LLM API Key and the base text for your prompts. Use placeholders like {'{field1}'} for dynamic input.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <FormField
