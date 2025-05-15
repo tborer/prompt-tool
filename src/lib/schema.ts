@@ -10,6 +10,7 @@ export const promptWeaverFormSchema = z.object({
   field4: z.string().optional(),
   field5: z.string().optional(),
   field6: z.string().optional(),
+  prompt1Setup: z.string(),
   prompt2Setup: z.string(),
 }).superRefine((data, ctx) => {
   if (data.promptType === 'Prompt 1') {
