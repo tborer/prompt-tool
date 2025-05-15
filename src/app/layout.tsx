@@ -21,7 +21,6 @@ export const metadata: Metadata = {
     shortcut: [],
     apple: [],
     other: [], // Also ensuring 'other' is explicitly empty
-    default: false, // Explicitly prevent default icon generation/processing
   },
 };
 
