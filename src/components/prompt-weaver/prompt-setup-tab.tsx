@@ -48,7 +48,13 @@ const PromptSetupTab: FC<PromptSetupTabProps> = ({ form }) => {
               <FormLabel className="text-base font-medium text-foreground">Prompt 1 Setup</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Enter setup text for Prompt 1. Example: Summarize the following text: {field1}"
+                  placeholder={`Using the client information of:
+{field1}
+{field2}
+{field3}
+
+Writing as an attorney with experience in immigration and asylum cases, write a 3 paragraph brief that explains why the client has experienced hardship and is eligible for asylum. `}
+
                   className="min-h-[150px] bg-background focus-visible:ring-accent"
                   {...field}
                 />
