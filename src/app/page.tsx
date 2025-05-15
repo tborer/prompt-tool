@@ -29,7 +29,13 @@ const HomePage: FC = () => {
       field4: '',
       field5: '',
       field6: '',
-      llmApiKey: '',
+      prompt1Setup: `Using the client information of:
+{field1}
+{field2}
+{field3}
+
+Writing as an attorney with experience in immigration and asylum cases, write a 3 paragraph brief that explains why the client has experienced hardship and is eligible for asylum. `,
+
       prompt1Setup: '',
       prompt2Setup: '',
     },
@@ -49,7 +55,6 @@ const HomePage: FC = () => {
       field4: data.field4,
       field5: data.field5,
       field6: data.field6,
-      prompt1Setup: data.prompt1Setup,
       prompt2Setup: data.prompt2Setup,
       llmApiKey: data.llmApiKey,
     };
