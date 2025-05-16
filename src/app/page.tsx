@@ -43,16 +43,14 @@ Writing as an attorney with experience in immigration and asylum cases, write a 
   const onSubmit = async (data: PromptWeaverFormValues) => {
     setLlmOutput('');
     setLlmError(null);
-    setIsSubmittingLlm(true);
-    
+    setIsSubmittingLlm(true);    
     const aiInput: GenerateLlmOutputInput = {
       promptType: data.promptType,
+      prompt1Setup: data.prompt1Setup,
+      prompt2Setup: data.prompt2Setup,
+      llmApiKey: data.llmApiKey,
       field1: data.field1,
       field2: data.field2,
-      field3: data.field3,
-      field4: data.field4,
-      field5: data.field5,
-      field6: data.field6,
       ...(data.promptType === 'Prompt 1' ? { prompt1Setup: data.prompt1Setup } : { prompt2Setup: data.prompt2Setup }),
       prompt2Setup: data.prompt2Setup, // Added prompt2Setup here
       llmApiKey: data.llmApiKey,
