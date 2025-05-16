@@ -49,7 +49,7 @@ Writing as an attorney with experience in immigration and asylum cases, write a 
       promptType: data.promptType,
       prompt1Setup: data.prompt1Setup, // Always include prompt1Setup
       prompt2Setup: data.prompt2Setup, // Always include prompt2Setup
-      llmApiKey: data.llmApiKey,
+      llmApiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY as string, // Get from environment variable
       field1: data.field1,
       field2: data.field2,
       field3: data.field3,
