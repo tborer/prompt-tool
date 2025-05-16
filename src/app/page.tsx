@@ -44,7 +44,7 @@ Writing as an attorney with experience in immigration and asylum cases, write a 
     setLlmOutput('');
     setLlmError(null);
     setIsSubmittingLlm(true);
-
+    
     const aiInput: GenerateLlmOutputInput = {
       promptType: data.promptType,
       field1: data.field1,
@@ -54,6 +54,7 @@ Writing as an attorney with experience in immigration and asylum cases, write a 
       field5: data.field5,
       field6: data.field6,
       ...(data.promptType === 'Prompt 1' ? { prompt1Setup: data.prompt1Setup } : { prompt2Setup: data.prompt2Setup }),
+      prompt2Setup: data.prompt2Setup, // Added prompt2Setup here
       llmApiKey: data.llmApiKey,
     };
 
