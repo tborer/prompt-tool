@@ -94,7 +94,16 @@ const generateLlmOutputFlow = ai.defineFlow(
       });
  console.log('Raw LLM response:', output);
 
- return { output: output.output || output }; // safer
+      let finalOutputString = '';
+      if (typeof output === 'string') {
+        finalOutputString = output;
+      } else if (typeof output === 'object' && output !== null && 'output' in output && typeof output.output === 'string') {
+        finalOutputString = output.output;
+      } else {
+        console.error('Unexpected LLM response structure:', output);
+        finalOutputString = 'Error: Unexpected response from LLM.'; // Default error message
+      }
+      return { output: finalOutputString };
     } catch (error) {
       console.error('Error generating LLM output:', error);
  throw error; // Re-throw the error after logging
