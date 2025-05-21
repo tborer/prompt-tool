@@ -39,14 +39,8 @@ export async function generateLlmOutput(input: GenerateLlmOutputInput): Promise<
 
 const prompt = ai.definePrompt({
   name: 'llmOutputPrompt',
-  input: {schema: GenerateLlmOutputInputSchema},
+  input: {schema: z.object({ finalPrompt: z.string() })},
   output: {schema: GenerateLlmOutputOutputSchema},
-  prompt: `{{#ifEquals promptType "Prompt 1"}}
-    {{{prompt1Setup}}}
-  {{else}}
-    {{{prompt2Setup}}}
-  {{/ifEquals}}
-  `,
   config: {
     model: 'googleai/gemini-2.0-flash'
   }
@@ -87,28 +81,20 @@ const generateLlmOutputFlow = ai.defineFlow(
       promptType
     } = input
 
- try {
+    try {
       const processedPrompt1Setup = replaceVariables(prompt1Setup, {field1, field2, field3});
       const processedPrompt2Setup = replaceVariables(prompt2Setup, {field4, field5, field6});
 
- console.log('Input data used in prompt:', {
-        ...input,
-        prompt1Setup: processedPrompt1Setup,
-        prompt2Setup: processedPrompt2Setup,
-      });
+      const finalPrompt = promptType === 'Prompt 1' ? processedPrompt1Setup : processedPrompt2Setup;
 
-      // Log the actual prompt sent to the LLM after variable replacement
-      console.log('Actual prompt sent to LLM:', {
-        prompt: input.promptType === 'Prompt 1' ? processedPrompt1Setup : processedPrompt2Setup,
-      });
- const { output } = await prompt({
-        ...input,
-        prompt1Setup: processedPrompt1Setup,
-        prompt2Setup: processedPrompt2Setup,
-      });
- console.log('Output received from LLM:', output);
+      console.log('Actual prompt sent to LLM:', finalPrompt);
 
- return { output: output!.output };
+      const { output } = await prompt({
+        finalPrompt,
+      });
+ console.log('Raw LLM response:', output);
+
+ return { output: output.output || output }; // safer
     } catch (error) {
       console.error('Error generating LLM output:', error);
  throw error; // Re-throw the error after logging
