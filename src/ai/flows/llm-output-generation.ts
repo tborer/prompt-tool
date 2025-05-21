@@ -87,18 +87,27 @@ const generateLlmOutputFlow = ai.defineFlow(
       promptType
     } = input
 
+ try {
+      const processedPrompt1Setup = replaceVariables(prompt1Setup, {field1, field2, field3});
+      const processedPrompt2Setup = replaceVariables(prompt2Setup, {field4, field5, field6});
 
-    const {
-      output
-    } = await prompt({
-      ...input,
-      prompt1Setup: replaceVariables(prompt1Setup, {field1, field2, field3}),
-      prompt2Setup: replaceVariables(prompt2Setup, {field4, field5, field6}),
-    });
+ console.log('Input prompt sent to LLM:', {
+        ...input,
+        prompt1Setup: processedPrompt1Setup,
+        prompt2Setup: processedPrompt2Setup,
+      });
+ const { output } = await prompt({
+        ...input,
+        prompt1Setup: processedPrompt1Setup,
+        prompt2Setup: processedPrompt2Setup,
+      });
+ console.log('Output received from LLM:', output);
 
-    return {
-      output: output!.output,
-    };
+ return { output: output!.output };
+    } catch (error) {
+      console.error('Error generating LLM output:', error);
+ throw error; // Re-throw the error after logging
+    }
   }
 );
 
