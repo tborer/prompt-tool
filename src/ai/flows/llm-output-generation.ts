@@ -54,6 +54,7 @@ const generateLlmOutputFlow = ai.defineFlow(
     outputSchema: GenerateLlmOutputOutputSchema,
   },
   async input => {
+    console.log('generateLlmOutputFlow entered with input:', input);
     if (input.promptType === 'Prompt 1' && !input.prompt1Setup) {
       throw new Error('Prompt 1 Setup is required.');
     }
@@ -83,15 +84,18 @@ const generateLlmOutputFlow = ai.defineFlow(
     } = input
 
     try {
+      console.log('Starting variable replacement...');
       const processedPrompt1Setup = replaceVariables(prompt1Setup, {field1, field2, field3});
       const processedPrompt2Setup = replaceVariables(prompt2Setup, {field4, field5, field6});
+      console.log('Variable replacement finished.');
 
       const finalPrompt = promptType === 'Prompt 1' ? processedPrompt1Setup : processedPrompt2Setup;
 
       console.log('Actual prompt sent to LLM:', finalPrompt);
 
+      console.log('Calling LLM API...');
       const { output } = await prompt({
-        finalPrompt,
+        finalPrompt: finalPrompt,
       });
  console.log('Raw LLM response:', output);
 
@@ -104,10 +108,12 @@ const generateLlmOutputFlow = ai.defineFlow(
         console.error('Unexpected LLM response structure:', output);
         finalOutputString = 'Error: Unexpected response from LLM.'; // Default error message
       }
+      console.log('generateLlmOutputFlow exiting successfully with output:', finalOutputString);
       return { output: finalOutputString };
     } catch (error) {
       console.error('Error generating LLM output:', error);
  throw error; // Re-throw the error after logging
+      console.log('generateLlmOutputFlow exiting with error.');
     }
   }
 );

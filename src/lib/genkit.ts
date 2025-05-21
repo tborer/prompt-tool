@@ -1,3 +1,5 @@
+console.log('Genkit initialization starting...');
+
 import { genkit } from 'genkit';
 import { googleAI } from '@genkit-ai/googleai';
 
