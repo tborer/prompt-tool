@@ -58,6 +58,8 @@ Writing as an attorney with experience in immigration and asylum cases, write a 
       field6: data.field6,
     };
 
+    console.log('Input sent to generateLlmOutput:', aiInput);
+
     try {
       const result = await generateLlmOutput(aiInput);
       if (result.output) {
