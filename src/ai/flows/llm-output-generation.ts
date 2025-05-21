@@ -34,6 +34,7 @@ const GenerateLlmOutputOutputSchema = z.object({
 export type GenerateLlmOutputOutput = z.infer<typeof GenerateLlmOutputOutputSchema>;
 
 export async function generateLlmOutput(input: GenerateLlmOutputInput): Promise<GenerateLlmOutputOutput> {
+  console.log('generateLlmOutput called with input:', input);
   return generateLlmOutputFlow(input);
 }
 
