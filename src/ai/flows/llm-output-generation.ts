@@ -91,10 +91,15 @@ const generateLlmOutputFlow = ai.defineFlow(
       const processedPrompt1Setup = replaceVariables(prompt1Setup, {field1, field2, field3});
       const processedPrompt2Setup = replaceVariables(prompt2Setup, {field4, field5, field6});
 
- console.log('Input prompt sent to LLM:', {
+ console.log('Input data used in prompt:', {
         ...input,
         prompt1Setup: processedPrompt1Setup,
         prompt2Setup: processedPrompt2Setup,
+      });
+
+      // Log the actual prompt sent to the LLM after variable replacement
+      console.log('Actual prompt sent to LLM:', {
+        prompt: input.promptType === 'Prompt 1' ? processedPrompt1Setup : processedPrompt2Setup,
       });
  const { output } = await prompt({
         ...input,
