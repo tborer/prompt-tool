@@ -14,7 +14,9 @@ export const llmOutputPrompt = ai.definePrompt({
   name: 'llmOutputPrompt',
   input: { schema: z.object({ finalPrompt: z.string() }) },
   output: { schema: z.string() }, // Assuming the output is just the generated text
-  type: 'chat', // Indicate that this is a chat-based prompt
+  config: {
+    type: 'chat', // Indicate that this is a chat-based prompt
+  },
   generate: async ({ finalPrompt }) => {
     const chat = [
       {
