@@ -42,8 +42,8 @@ const prompt = ai.definePrompt({
   name: 'llmOutputPrompt',
   input: {schema: z.object({ finalPrompt: z.string() })},
   output: {schema: GenerateLlmOutputOutputSchema},
-  config: {
-    model: 'googleai/gemini-2.0-flash'
+  config: { // Updated config for Gemini API message format
+    model: 'gemini-2.0-flash' // Specify the model name
   }
 });
 
@@ -94,8 +94,20 @@ const generateLlmOutputFlow = ai.defineFlow(
       console.log('Actual prompt sent to LLM:', finalPrompt);
 
       console.log('Calling LLM API...');
+      // Construct the API request body in the expected Gemini API format
+      const apiRequest = {
+        contents: [
+          {
+            role: 'user',
+            parts: [
+              { text: finalPrompt }
+            ]
+          }
+        ]
+      };
+
       const { output } = await prompt({
-        finalPrompt: finalPrompt,
+        input: apiRequest, // Pass the constructed API request body
       });
  console.log('Raw LLM response:', output);
 
