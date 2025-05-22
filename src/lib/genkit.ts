@@ -1,6 +1,7 @@
 console.log('Genkit initialization starting...');
 
 import { genkit } from 'genkit';
+import { z } from 'genkit';
 import { googleAI } from '@genkit-ai/googleai';
 
 export const ai = genkit({
