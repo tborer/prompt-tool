@@ -96,8 +96,7 @@ const generateLlmOutputFlow = ai.defineFlow(
       console.log('Calling LLM API...');
       // Construct the API request body in the expected Gemini API format
       const apiRequest = {
-        contents: [
-          {
+ contents: [{
             role: 'user',
             parts: [
               { text: finalPrompt }
@@ -107,7 +106,7 @@ const generateLlmOutputFlow = ai.defineFlow(
       };
 
       const { output } = await prompt({
-        input: apiRequest, // Pass the constructed API request body
+ finalPrompt: finalPrompt, // Pass the constructed API request body
       });
  console.log('Raw LLM response:', output);
 
