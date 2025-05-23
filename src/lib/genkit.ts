@@ -1,6 +1,6 @@
 console.log('Genkit initialization starting...');
 
-import { genkit, defineExecutablePrompt } from '@genkit-ai/ai';
+import { defineExecutablePrompt } from '@genkit-ai/ai';
 import { z } from 'genkit';
 import { googleAI } from '@genkit-ai/googleai';
 
