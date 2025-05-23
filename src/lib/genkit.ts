@@ -2,6 +2,7 @@ console.log('Genkit initialization starting...');
 import { definePrompt } from '@genkit-ai/ai';
 import { initGenkit } from '@genkit-ai/core';
 import { genkit } from 'genkit';
+import * as z from 'zod';
 import { googleAI } from '@genkit-ai/googleai';
 
 export const ai = genkit({
@@ -13,6 +14,6 @@ export const ai = genkit({
 export const llmOutputPrompt = definePrompt({
   name: 'llmOutputPrompt',
   input: { schema: z.object({ finalPrompt: z.string() }) },
-  output: { schema: z.string() }, // Assuming the output is just the generated text
+  output: { schema: z.object({ output: z.string() }) }, // match GenerateLlmOutputOutputSchema
   config: { type: 'chat' }, // Indicate that this is a chat-based prompt
 });

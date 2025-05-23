@@ -10,7 +10,6 @@
  */
 
 import { ai } from '@/lib/genkit'; // Import the ai instance
-import { definePrompt } from '@genkit-ai/ai';
 import {z} from 'genkit';
 
 const GenerateLlmOutputInputSchema = z.object({
@@ -39,15 +38,6 @@ export async function generateLlmOutput(input: GenerateLlmOutputInput): Promise<
   return generateLlmOutputFlow(input);
 }
 ;
-const prompt = definePrompt({
-  name: 'llmOutputPrompt',
-  input: { schema: z.object({ finalPrompt: z.string() }) },
-  output: { schema: GenerateLlmOutputOutputSchema },
-  config: { // Updated config for Gemini API message format
-    model: 'gemini-2.0-flash' // Specify the model name
-  }
-});
-
 const generateLlmOutputFlow = ai.defineFlow(
   {
     name: 'generateLlmOutputFlow',
@@ -96,9 +86,7 @@ const generateLlmOutputFlow = ai.defineFlow(
 
       console.log('Calling LLM API...');
 
-      const { output } = await prompt({
-        finalPrompt,
-      });
+      const { output } = await ai.invokePrompt('llmOutputPrompt', { finalPrompt, });
       console.log('Raw LLM response:', output);
 
       let finalOutputString = '';
