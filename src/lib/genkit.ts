@@ -12,7 +12,7 @@ export const ai = initGenkit({
 // Define a prompt that takes the finalPrompt string and structures it as a message for the LLM.
 export const llmOutputPrompt = definePrompt(ai, {
   name: 'llmOutputPrompt',
-  input: {schema: z.object({ finalPrompt: z.string() })},
-  output: {schema: z.string()}, // Assuming the output is just the generated text
+  input: { schema: z.object({ finalPrompt: z.string() }) },
+  output: { schema: z.string() }, // Assuming the output is just the generated text
   config: { type: 'chat' }, // Indicate that this is a chat-based prompt
 });

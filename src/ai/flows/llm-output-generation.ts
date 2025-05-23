@@ -41,8 +41,8 @@ export async function generateLlmOutput(input: GenerateLlmOutputInput): Promise<
 ;
 const prompt = definePrompt(ai, {
   name: 'llmOutputPrompt',
-  inputSchema: z.object({ finalPrompt: z.string() }),
-  outputSchema: GenerateLlmOutputOutputSchema,
+  input: { schema: z.object({ finalPrompt: z.string() }) },
+  output: { schema: GenerateLlmOutputOutputSchema },
   config: { // Updated config for Gemini API message format
     model: 'gemini-2.0-flash' // Specify the model name
   }
