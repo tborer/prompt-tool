@@ -1,6 +1,5 @@
 console.log('Genkit initialization starting...');
 import { definePrompt } from '@genkit-ai/ai';
-import { initGenkit } from '@genkit-ai/core';
 import { genkit } from 'genkit';
 import * as z from 'zod';
 import { googleAI } from '@genkit-ai/googleai';
