@@ -4,7 +4,7 @@ import { initGenkit } from '@genkit-ai/core';
 import { z } from 'genkit';
 import { googleAI } from '@genkit-ai/googleai';
 
-initGenkit({
+const ai = initGenkit({
   plugins: [googleAI({ apiKey: process.env.GEMINI_API_KEY! })],
   defaultModel: 'googleai/gemini-2.0-flash',
 });

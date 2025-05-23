@@ -9,7 +9,7 @@
  * - GenerateLlmOutputOutput - The return type for the generateLlmOutput function.
  */
 
-import {ai} from '@/lib/genkit';
+import '@/lib/genkit'; // Just import it for side-effects (initGenkit)
 import {z} from 'genkit';
 
 const GenerateLlmOutputInputSchema = z.object({
