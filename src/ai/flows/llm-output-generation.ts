@@ -37,8 +37,8 @@ export async function generateLlmOutput(input: GenerateLlmOutputInput): Promise<
   console.log('generateLlmOutput called with input:', input);
   return generateLlmOutputFlow(input);
 }
-
-const prompt = ai.definePrompt({
+;
+const prompt = definePrompt({
   name: 'llmOutputPrompt',
   input: {schema: z.object({ finalPrompt: z.string() })},
   output: {schema: GenerateLlmOutputOutputSchema},
