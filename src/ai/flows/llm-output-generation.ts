@@ -10,6 +10,7 @@
  */
 
 import '@/lib/genkit'; // Just import it for side-effects (initGenkit)
+import { definePrompt } from '@genkit-ai/ai';
 import {z} from 'genkit';
 
 const GenerateLlmOutputInputSchema = z.object({
