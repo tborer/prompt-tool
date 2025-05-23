@@ -9,7 +9,7 @@
  * - GenerateLlmOutputOutput - The return type for the generateLlmOutput function.
  */
 
-import { ai } from '@/lib/genkit'; // Import the ai instance
+import { ai, llmOutputPrompt } from '@/lib/genkit'; // Import the ai instance and the prompt
 import {z} from 'genkit';
 
 const GenerateLlmOutputInputSchema = z.object({
@@ -86,7 +86,7 @@ const generateLlmOutputFlow = ai.defineFlow(
 
       console.log('Calling LLM API...');
 
-      const { output } = await ai.invokePrompt('llmOutputPrompt', { finalPrompt, });
+      const { output } = await llmOutputPrompt({ finalPrompt });
       console.log('Raw LLM response:', output);
 
       let finalOutputString = '';
