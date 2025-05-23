@@ -53,7 +53,7 @@ const generateLlmOutputFlow = ai.defineFlow(
     inputSchema: GenerateLlmOutputInputSchema,
     outputSchema: GenerateLlmOutputOutputSchema,
   },
-  async input => {
+  async (input: GenerateLlmOutputInput) => {
     console.log('generateLlmOutputFlow entered with input:', input);
     if (input.promptType === 'Prompt 1' && !input.prompt1Setup) {
       throw new Error('Prompt 1 Setup is required.');
