@@ -1,6 +1,6 @@
 console.log('Genkit initialization starting...');
-
-import { defineExecutablePrompt } from '@genkit-ai/ai';
+// Genkit init not used in this version
+import { definePrompt } from '@genkit-ai/ai';
 import { z } from 'genkit';
 import { googleAI } from '@genkit-ai/googleai';
 
@@ -10,21 +10,11 @@ export const ai = genkit({
 });
 
 // Define a prompt that takes the finalPrompt string and structures it as a message for the LLM.
-export const llmOutputPrompt = ai.defineExecutablePrompt({
+export const llmOutputPrompt = ai.definePrompt({
   name: 'llmOutputPrompt',
   input: { schema: z.object({ finalPrompt: z.string() }) },
   output: { schema: z.string() }, // Assuming the output is just the generated text
   config: {
     type: 'chat', // Indicate that this is a chat-based prompt
   },
-  generate: async ({ finalPrompt }) => {
-    const chat = [
-      {
-        role: 'user',
-        content: finalPrompt
-      }
-    ];
-    console.log("Generated chat message:", chat); // Log the generated chat message
-    return chat;
-  }
 });
