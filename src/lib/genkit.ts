@@ -9,9 +9,7 @@ export const ai = genkit({
   model: 'googleai/gemini-2.0-flash',
 });
 
-// Define a prompt that takes the finalPrompt string and structures it as a message for the LLM.
-export const llmOutputPrompt = definePrompt({
-  name: 'llmOutputPrompt',
+export const llmOutputPrompt = definePrompt('llmOutputPrompt', {
   input: { schema: z.object({ finalPrompt: z.string() }) },
   output: { schema: z.object({ output: z.string() }) }, // match GenerateLlmOutputOutputSchema
   config: { type: 'chat' }, // Indicate that this is a chat-based prompt
