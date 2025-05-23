@@ -1,12 +1,12 @@
 console.log('Genkit initialization starting...');
 import { definePrompt } from '@genkit-ai/ai';
 import { initGenkit } from '@genkit-ai/core';
-import { z } from 'genkit';
+import { genkit, z } from 'genkit';
 import { googleAI } from '@genkit-ai/googleai';
 
-export const ai = initGenkit({
+export const ai = genkit({
   plugins: [googleAI({ apiKey: process.env.GEMINI_API_KEY! })],
-  defaultModel: 'googleai/gemini-2.0-flash',
+  model: 'googleai/gemini-2.0-flash',
 });
 
 // Define a prompt that takes the finalPrompt string and structures it as a message for the LLM.
