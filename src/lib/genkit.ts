@@ -4,15 +4,15 @@ import { initGenkit } from '@genkit-ai/core';
 import { z } from 'genkit';
 import { googleAI } from '@genkit-ai/googleai';
 
-const ai = initGenkit({
+export const ai = initGenkit({
   plugins: [googleAI({ apiKey: process.env.GEMINI_API_KEY! })],
   defaultModel: 'googleai/gemini-2.0-flash',
 });
 
 // Define a prompt that takes the finalPrompt string and structures it as a message for the LLM.
-export const llmOutputPrompt = definePrompt({
+export const llmOutputPrompt = definePrompt(ai, {
   name: 'llmOutputPrompt',
-  inputSchema: z.object({ finalPrompt: z.string() }),
-  outputSchema: z.string(), // Assuming the output is just the generated text
+  input: {schema: z.object({ finalPrompt: z.string() })},
+  output: {schema: z.string()}, // Assuming the output is just the generated text
   config: { type: 'chat' }, // Indicate that this is a chat-based prompt
 });

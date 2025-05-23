@@ -9,8 +9,8 @@
  * - GenerateLlmOutputOutput - The return type for the generateLlmOutput function.
  */
 
-import '@/lib/genkit'; // Just import it for side-effects (initGenkit)
 import { definePrompt } from '@genkit-ai/ai';
+import { ai } from '@/lib/genkit';
 import {z} from 'genkit';
 
 const GenerateLlmOutputInputSchema = z.object({
@@ -39,10 +39,10 @@ export async function generateLlmOutput(input: GenerateLlmOutputInput): Promise<
   return generateLlmOutputFlow(input);
 }
 ;
-const prompt = definePrompt({
+const prompt = definePrompt(ai, {
   name: 'llmOutputPrompt',
-  input: {schema: z.object({ finalPrompt: z.string() })},
-  output: {schema: GenerateLlmOutputOutputSchema},
+  inputSchema: z.object({ finalPrompt: z.string() }),
+  outputSchema: GenerateLlmOutputOutputSchema,
   config: { // Updated config for Gemini API message format
     model: 'gemini-2.0-flash' // Specify the model name
   }
